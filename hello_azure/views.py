@@ -75,4 +75,4 @@ def add_user_post(request):
             conn.commit()
             conn.close()
 
-        redirect('all')
+        return redirect('all')
