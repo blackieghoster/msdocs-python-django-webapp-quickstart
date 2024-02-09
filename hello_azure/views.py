@@ -48,9 +48,8 @@ def users(request):
         cur.execute("SELECT * FROM users;")
         u = cur.fetchall()
     conn.close()
-
-    if request.method == 'GET':
-        return render(request, f"{u}")
+    context = {'users': u}
+    return render(request, 'hello_azure/users.html', context)
 
 
 @csrf_exempt
