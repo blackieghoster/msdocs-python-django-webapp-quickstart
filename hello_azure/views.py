@@ -1,4 +1,4 @@
-import psycopg2 as psycopg2
+from psycopg2 import connect
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -6,10 +6,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     print('Request for index page received')
-    conn = psycopg2.connect(user="wsb", password="9a8346ec-545a-4e67-a9aa-3c8bedbd3511",
-                            host="wsb-test-app-server.postgres.database.azure.com",
-                            port=5432,
-                            database="wsb")
+    conn = connect(user="wsb", password="9a8346ec-545a-4e67-a9aa-3c8bedbd3511",
+                   host="wsb-test-app-server.postgres.database.azure.com",
+                   port=5432,
+                   database="wsb")
 
     with conn.cursor() as cur:
         cur.execute("SELECT * FROM users;")
