@@ -83,3 +83,33 @@ def add_user_post(request):
         return redirect("https://wsb-test-app.azurewebsites.net/all")
     else:
         redirect("https://wsb-test-app.azurewebsites.net/all")
+
+
+@csrf_exempt
+def delete_user(request):
+    return render(request, 'hello_azure/delete_user.html')
+
+
+@csrf_exempt
+def delete_user_post(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        surname = request.POST.get('surname')
+
+        conn = connect(user="wsb", password="9a8346ec-545a-4e67-a9aa-3c8bedbd3511",
+                       host="wsb-test-app-server.postgres.database.azure.com",
+                       port=5432,
+                       database="wsb")
+
+        with conn.cursor() as cur:
+            sql = "DELETE FROM users WHERE user_name=%s AND user_surname=%s);"
+            data = (name, surname)
+
+            cur.execute(sql, data)
+            conn.commit()
+            cur.close()
+            conn.close()
+
+        return redirect("https://wsb-test-app.azurewebsites.net/all")
+    else:
+        redirect("https://wsb-test-app.azurewebsites.net/all")
