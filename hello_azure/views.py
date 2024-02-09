@@ -75,6 +75,16 @@ def add_user_post(request):
             conn.commit()
             conn.close()
 
-        return redirect('all_users')
-    else:
-        redirect('all_users')
+        conn = connect(user="wsb", password="9a8346ec-545a-4e67-a9aa-3c8bedbd3511",
+                       host="wsb-test-app-server.postgres.database.azure.com",
+                       port=5432,
+                       database="wsb")
+
+        with conn.cursor() as cur:
+            cur.execute("SELECT * FROM users;")
+            u = cur.fetchall()
+        conn.close()
+        context = {'users': u}
+        print(context)
+
+        return render(request, 'hello_azure/all.html', context)
