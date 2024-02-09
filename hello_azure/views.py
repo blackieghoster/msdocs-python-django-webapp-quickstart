@@ -102,7 +102,7 @@ def delete_user_post(request):
                        database="wsb")
 
         with conn.cursor() as cur:
-            sql = "DELETE FROM users WHERE user_name='%s' AND user_surname='%s');"
+            sql = "DELETE FROM users WHERE user_name='%s' AND user_surname='%s';"
             data = (name, surname)
 
             cur.execute(sql, data)
