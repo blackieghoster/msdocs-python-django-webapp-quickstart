@@ -20,7 +20,7 @@ from hello_azure import views
 urlpatterns = [
     path('', include('hello_azure.urls')),
     path('admin/', admin.site.urls),
-    path('users/', views.users),
-    path('add_user/', views.add_user),
+    path('users', views.users, name='users'),
+    path('add_user', views.add_user, name='add_user'),
     # path('delete_user/', views.users),
 ]
