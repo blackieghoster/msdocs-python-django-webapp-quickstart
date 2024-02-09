@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from hello_azure import views
 
 urlpatterns = [
     path('', include('hello_azure.urls')),
     path('admin/', admin.site.urls),
+    path('users/', views.users),
+    path('add_user/', views.users),
+    path('delete_user/', views.users),
 ]
