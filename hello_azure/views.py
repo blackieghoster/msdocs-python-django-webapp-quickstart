@@ -48,6 +48,7 @@ def all_users(request):
         cur.execute("SELECT * FROM users;")
         u = cur.fetchall()
     conn.close()
+    cur.close()
     context = {'users': u}
     print(context)
 
@@ -71,10 +72,14 @@ def add_user_post(request):
                        database="wsb")
 
         with conn.cursor() as cur:
-            cur.execute(f"INSERT INTO users VALUES ('{name}', '{surname}');")
+            sql = "INSERT INTO users (user_name, user_surname) VALUES (%s, %s);"
+            data = (name, surname)
+
+            cur.execute(sql, data)
             conn.commit()
+            cur.close()
             conn.close()
 
-        return redirect('all_users')
+        return redirect("https://wsb-test-app.azurewebsites.net/all")
     else:
-        redirect('all_users')
+        redirect("https://wsb-test-app.azurewebsites.net/all")
