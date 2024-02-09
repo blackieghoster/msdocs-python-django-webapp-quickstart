@@ -75,6 +75,6 @@ def add_user_post(request):
             conn.commit()
             conn.close()
 
-        return redirect('all')
+        return redirect('all_users')
     else:
-        redirect('all')
+        redirect('all_users')
