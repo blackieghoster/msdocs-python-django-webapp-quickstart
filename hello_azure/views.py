@@ -49,6 +49,7 @@ def users(request):
         u = cur.fetchall()
     conn.close()
     context = {'users': u}
+
     return render(request, 'hello_azure/users.html', context)
 
 
@@ -70,6 +71,7 @@ def add_user_post(request):
 
         with conn.cursor() as cur:
             cur.execute(f"INSERT INTO users VALUES ('{name}', '{surname}');")
+            conn.commit()
             conn.close()
 
         redirect('users')

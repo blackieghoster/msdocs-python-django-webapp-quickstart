@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<!doctype html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Hello Azure - Python Quickstart</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="icon"href="{% static 'favicon.ico' %}">
 </head>
-<body>
-    {{users}}
-</body>
+<html>
+    <body>
+        {{ users }}
+    </body>
 </html>
