@@ -38,7 +38,7 @@ def hello(request):
 
 
 @csrf_exempt
-def users(request):
+def all_users(request):
     conn = connect(user="wsb", password="9a8346ec-545a-4e67-a9aa-3c8bedbd3511",
                    host="wsb-test-app-server.postgres.database.azure.com",
                    port=5432,
@@ -49,8 +49,9 @@ def users(request):
         u = cur.fetchall()
     conn.close()
     context = {'users': u}
+    print(context)
 
-    return render(request, 'hello_azure/users.html', context)
+    return render(request, 'hello_azure/all.html', context)
 
 
 @csrf_exempt
