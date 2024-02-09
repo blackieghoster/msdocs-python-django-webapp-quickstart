@@ -76,3 +76,5 @@ def add_user_post(request):
             conn.close()
 
         return redirect('all')
+    else:
+        redirect('all')
