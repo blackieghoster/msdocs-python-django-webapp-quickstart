@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('hello_azure.urls')),
     path('admin/', admin.site.urls),
     path('users/', views.users),
-    path('add_user/', views.users),
-    path('delete_user/', views.users),
+    path('add_user/', views.add_user),
+    # path('delete_user/', views.users),
 ]
